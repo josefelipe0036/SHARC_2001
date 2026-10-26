@@ -23,6 +23,7 @@ from sharc.propagation.propagation_tvro import PropagationTvro
 from sharc.propagation.propagation_indoor import PropagationIndoor
 from sharc.propagation.propagation_hdfss import PropagationHDFSS
 from sharc.propagation.propagation_p528 import PropagationP528
+from sharc.propagation.propagation_p2001 import PropagationP2001
 
 
 class PropagationFactory(object):
@@ -102,6 +103,13 @@ class PropagationFactory(object):
                 param.imt.topology.indoor,
                 param.imt.ue.k * param.imt.ue.k_m,
             )
+        # ⬇️ ADICIONE ESTE BLOCO AQUI
+        elif channel_model == "P2001":
+            return PropagationP2001(
+                random_number_gen, 
+                param_system.param_p2001
+            )
+
         else:
             sys.stderr.write("ERROR\nInvalid channel_model: " + channel_model)
             sys.exit(1)

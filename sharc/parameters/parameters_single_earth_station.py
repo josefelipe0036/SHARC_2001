@@ -6,6 +6,7 @@ from sharc.parameters.parameters_antenna import ParametersAntenna
 from sharc.parameters.parameters_p619 import ParametersP619
 from sharc.parameters.parameters_p452 import ParametersP452
 from sharc.parameters.parameters_hdfss import ParametersHDFSS
+from sharc.parameters.parameters_p2001 import ParametersP2001
 
 
 @dataclass
@@ -72,7 +73,7 @@ class ParametersSingleEarthStation(ParametersBase):
     # Channel model, possible values are "FSPL" (free-space path loss), "P619"
     channel_model: typing.Literal[
         "FSPL", "P619",
-        "P452",
+        "P452", "P2001",
     ] = "FSPL"  # Channel model to be used
 
     param_p619: ParametersP619 = field(default_factory=ParametersP619)
@@ -80,6 +81,8 @@ class ParametersSingleEarthStation(ParametersBase):
     season: typing.Literal["WINTER", "SUMMER"] = "SUMMER"
 
     param_p452: ParametersP452 = field(default_factory=ParametersP452)
+
+    param_p2001: ParametersP2001 = field(default_factory=ParametersP2001)
 
     param_hdfss: ParametersHDFSS = field(default_factory=ParametersHDFSS)
 
@@ -338,10 +341,11 @@ class ParametersSingleEarthStation(ParametersBase):
             "FSPL",
             "P619",
             "P452",
+            "P2001",
             "TerrestrialSimple",
             "TVRO-URBAN",
                 "TVRO-SUBURBAN"]:
             raise ValueError(
                 f"{ctx}.channel_model" +
-                "needs to be in ['FSPL', 'P619', 'P452', 'TerrestrialSimple', 'TVRO-URBAN', 'TVRO-SUBURBAN']",
+                "needs to be in ['FSPL', 'P619', 'P452','P2001', 'TerrestrialSimple', 'TVRO-URBAN', 'TVRO-SUBURBAN']",
             )

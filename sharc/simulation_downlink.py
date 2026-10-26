@@ -137,7 +137,7 @@ class SimulationDownlink(Simulation):
         # divided among the selected UEs
         total_power = self.parameters.imt.bs.conducted_power \
             + self.bs_power_gain
-        tx_power = total_power - 10 * math.log10(self.parameters.imt.ue.k)
+        tx_power = total_power - 10 * np.log10(self.parameters.imt.ue.k)
         # calculate transmit powers to have a structure such as
         # {bs_1: [pwr_1, pwr_2,...], ...}, where bs_1 is the base station id,
         # pwr_1 is the transmit power from bs_1 to ue_1, pwr_2 is the transmit
@@ -174,7 +174,7 @@ class SimulationDownlink(Simulation):
 
         # Thermal noise in dBm
         self.ue.thermal_noise = \
-            10 * math.log10(BOLTZMANN_CONSTANT * self.parameters.imt.noise_temperature * 1e3) + \
+            10 * np.log10(BOLTZMANN_CONSTANT * self.parameters.imt.noise_temperature * 1e3) + \
             10 * np.log10(self.ue.bandwidth * 1e6) + \
             self.ue.noise_figure
 
@@ -566,8 +566,8 @@ class SimulationDownlink(Simulation):
         self.system.rx_interference = 10 * np.log10(rx_interference)
         # calculate N
         self.system.thermal_noise = \
-            10 * math.log10(BOLTZMANN_CONSTANT * self.system.noise_temperature * 1e3) + \
-            10 * math.log10(self.param_system.bandwidth * 1e6)
+            10 * np.log10(BOLTZMANN_CONSTANT * self.system.noise_temperature * 1e3) + \
+            10 * np.log10(self.param_system.bandwidth * 1e6)
 
         # Calculate INR at the system - dBm
         self.system.inr = np.array(
@@ -599,7 +599,7 @@ class SimulationDownlink(Simulation):
                 self.system.rx_interference.flatten(),
             )
             self.results.system_dl_interf_power_per_mhz.extend(
-                self.system.rx_interference.flatten() - 10 * math.log10(self.system.bandwidth),
+                self.system.rx_interference.flatten() - 10 * np.log10(self.system.bandwidth),
             )
             # TODO: generalize this a bit more if needed (same conditional as
             # above)

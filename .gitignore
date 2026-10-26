@@ -10096,3 +10096,10 @@ sharc/terrain_tests/global_dem/tiles_250m_tif/tile_p45_p119_250m.tif
 sharc/terrain_tests/global_dem/tiles_250m_tif/tile_p45_p120_250m.tif
 sharc/terrain_tests/global_dem/tiles_250m_tif/tile_p45_p121_250m.tif
 sharc/terrain_tests/global_dem/tiles_250m_tif/tile_p45_p122_250m.tif
+
+# Logs
+logs/
+sharc/logs/
+
+*.zip
+
